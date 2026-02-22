@@ -6,7 +6,7 @@
 	<artifactId>currency-conv-sys-api</artifactId>
 	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
-	<name>currency-conv-sys-api</name>
+	<name>currency-conv-sys-api-dev</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
