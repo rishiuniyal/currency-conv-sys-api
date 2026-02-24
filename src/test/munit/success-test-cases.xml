@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="success-test-cases.xml" />
+	<munit:test name="fetch-rates-test" doc:id="c5b2965f-25d4-4b74-984c-450aa0437044" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when Currency Request" doc:id="44f0ceee-f9ee-477f-926f-aa7c7b402c83" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Currency Rate API Request" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="56481f85-2481-4e65-9a45-2c2859a9055a" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[{&#10;    "base": "USD",&#10;    "date": "2026-02-23",&#10;    "rates": {&#10;        "INR": 90.75605,&#10;        "AUD": 1.4126289,&#10;        "EUR": 0.846134645,&#10;        "CAD": 1.36779801,&#10;        "GBP": 0.7418673,&#10;        "JPY": 154.4325,&#10;        "CNY": 6.90875,&#10;        "RUB": 76.4744075&#10;    }&#10;}]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="get:\v1\currency:currency-conv-sys-api-config" doc:id="5150e0c9-8b21-4643-b754-971cd2875898" name="get:\v1\currency:currency-conv-sys-api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload not null" doc:id="b7739a54-f738-4a54-b020-f0cfd193e38c" />
+			<munit-tools:verify-call doc:name="Verify end logger call" doc:id="1cc2297e-986e-4310-b16d-c19b4871feb6" processor="logger">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="INFO: end of get currency rates sub flow" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="7ef03cbf-6a34-42ce-9cf0-f72207ca565e" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+
+</mule>
