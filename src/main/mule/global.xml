@@ -7,8 +7,6 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
     <configuration-properties doc:name="Configuration properties" doc:id="9d015d85-152c-471d-92cc-550b039460df" doc:description="Environment-agnostic properties" file="properties/common.yaml" />
     <configuration-properties doc:name="Configuration properties" doc:id="1d9c81de-790e-4832-b752-60c31f8d8215" file="properties/${mule.env}.yaml" doc:description="Environment-specific properties" />
     <secure-properties:config name="secure-properties-config" doc:name="Secure Properties Config" doc:id="9174e84d-c26a-4ac8-b9b7-e5ddec0ec37b" doc:description="Environment-specific secure properties" file="properties/secure-${mule.env}.yaml" key="${mule.key}" />
-    <global-property doc:name="Global Property" doc:id="655b4e5f-c05d-4fce-985b-d65fefd16715" name="mule.env" value="dev" />
-    <global-property doc:name="Global Property" doc:id="e149dee7-501a-41a0-8914-b991a0061991" name="mule.key" value="sfr2mulesoft2026" />
 	<api-gateway:autodiscovery apiId="${autodiscovery.id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="207afcdf-29ea-4344-86ec-23add83bf2d1" flowRef="currency-conv-sys-api-main" />
 	<http:request-config name="currency-conv-http-req-config" doc:name="HTTP Request configuration" doc:id="9327d44d-f473-4420-b771-0c804d84af04" >
 		<http:request-connection protocol="HTTPS" host="${http.request.host}" port="${http.request.port}" maxConnections="${http.request.maxConn}" connectionIdleTimeout="${http.request.idleTimeout}" responseBufferSize="${http.request.bufferSize}" />
